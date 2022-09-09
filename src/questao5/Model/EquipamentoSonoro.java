@@ -1,21 +1,29 @@
 package questao5.Model;
 
-public class EquipamentoSonoro extends Equipamento{
+public class EquipamentoSonoro extends Equipamento {
     int volume = 0;
 
     public void aumentarVol() {
-        if (volume > 10) {
-            System.out.println("erro, volume já é 10");
+        if (isLigado() == true) {
+            if (volume >= 10) {
+                System.out.println("O volume já está no máximo (10)");
+            } else {
+                volume = volume + 1;
+            }
         } else {
-            volume = volume + 1;
+            System.out.println("Não foi possível aumentar o volume, o aparelho está desligado!");
         }
     }
 
     public void diminuirVol() {
-        if (volume > 0) {
-            System.out.println("erro, volume já está em 0");
+        if(isLigado() == true) {
+            if (volume <= 0) {
+                System.out.println("O volume já está no mínimo (0)");
+            } else {
+                volume = volume - 1;
+            }
         } else {
-            volume = volume - 1;
+            System.out.println("Não foi possível diminuir o volume, o aparelho está desligado!");
         }
     }
 
