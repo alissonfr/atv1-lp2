@@ -9,6 +9,7 @@ public class Main {
     private static int equipamentoIndex;
     private static int equipamentoNum;
     private static String equipamentoStatus;
+    private static int volPrejudicial = 0;
 
     public static void main(String[] args) {
         for (int i = 0; i < equipamentos.length; i++) {
@@ -42,8 +43,8 @@ public class Main {
 
         switch (equipamentoIndex) {
             case 0:
-            quit();
-            break;
+                quit();
+                break;
             case 1:
                 manipularEquipamento(0);
                 break;
@@ -100,9 +101,22 @@ public class Main {
         }
 
     }
-    
+
     public static void quit() {
-        
+        for (int i = 0; i < equipamentos.length; i++) {
+
+            if (equipamentos[i].getVolume() > 8) {
+                volPrejudicial++;
+            }
+        }
+
+        volPrejudicial = (volPrejudicial * 100) / 6;
+
+        if (volPrejudicial > 0) {
+            System.out.println("\nAlerta!!! " + volPrejudicial + "% dos seus aparelhos possuem volumes acima de 80 decibéis");
+        } else {
+            System.out.println("\nTodos os seus aparelhos estão abaixo do volume prejudicial à audição!!");
+        }
     }
 
 }
